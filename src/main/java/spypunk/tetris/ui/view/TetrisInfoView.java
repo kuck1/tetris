@@ -86,12 +86,16 @@ public class TetrisInfoView extends AbstractTetrisView {
 
         private final Map<ShapeType, Pair<Image, Rectangle>> shapeTypeImageRectangles;
 
+        private Rectangle rectangle1;
+
         NextShapeTetrisInfo() {
             super(new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 15), NEXT_SHAPE);
 
+            rectangle1 = new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 5);
+
             shapeTypeImageRectangles = Arrays.asList(ShapeType.values())
                     .stream()
-                    .collect(Collectors.toMap(Function.identity(), this::createShapeTypeImageRectangle));
+                    .collect(Collectors.toMap(Function.identity(), p -> this.createShapeTypeImageRectangle(p, rectangle1)));
         }
 
         @Override
@@ -108,12 +112,14 @@ public class TetrisInfoView extends AbstractTetrisView {
             final Pair<Image, Rectangle> shapeTypeImageRectangle = shapeTypeImageRectangles.get(shapeType);
 
             SwingUtils.drawImage(graphics, shapeTypeImageRectangle.getLeft(), shapeTypeImageRectangle.getRight());
+            SwingUtils.drawImage(graphics, shapeTypeImageRectangle.getLeft(), shapeTypeImageRectangle.getRight());
+
         }
 
-        private Pair<Image, Rectangle> createShapeTypeImageRectangle(final ShapeType shapeType) {
+        private Pair<Image, Rectangle> createShapeTypeImageRectangle(final ShapeType shapeType, Rectangle rect) {
             final Image shapeTypeImage = imageCache.getShapeImage(shapeType);
 
-            return Pair.of(shapeTypeImage, SwingUtils.getCenteredImageRectangle(shapeTypeImage, rectangle));
+            return Pair.of(shapeTypeImage, SwingUtils.getCenteredImageRectangle(shapeTypeImage, rect));
         }
     }
 
