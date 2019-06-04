@@ -87,7 +87,7 @@ public class TetrisInfoView extends AbstractTetrisView {
         private final Map<ShapeType, Pair<Image, Rectangle>> shapeTypeImageRectangles;
 
         NextShapeTetrisInfo() {
-            super(new Rectangle(0, BLOCK_SIZE * 12, BLOCK_SIZE * 6, BLOCK_SIZE * 6), NEXT_SHAPE);
+            super(new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 15), NEXT_SHAPE);
 
             shapeTypeImageRectangles = Arrays.asList(ShapeType.values())
                     .stream()
@@ -122,8 +122,8 @@ public class TetrisInfoView extends AbstractTetrisView {
         super(fontCache, imageCache, tetris);
 
         // final Rectangle levelRectangle = new Rectangle(0, BLOCK_SIZE * 3, BLOCK_SIZE * 6, BLOCK_SIZE);
-        final Rectangle scoreRectangle = new Rectangle(0, BLOCK_SIZE * 6, BLOCK_SIZE * 6, BLOCK_SIZE);
-        final Rectangle rowsRectangle = new Rectangle(0, BLOCK_SIZE * 9, BLOCK_SIZE * 6, BLOCK_SIZE);
+        final Rectangle scoreRectangle = new Rectangle(0, BLOCK_SIZE, BLOCK_SIZE * 6, BLOCK_SIZE);
+//        final Rectangle rowsRectangle = new Rectangle(0, BLOCK_SIZE * 9, BLOCK_SIZE * 6, BLOCK_SIZE);
 
 //        rowsTetrisInfo = new ValueTetrisInfo(rowsRectangle, ROWS);
         scoreTetrisInfo = new ValueTetrisInfo(scoreRectangle, SCORE);
