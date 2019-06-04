@@ -40,9 +40,9 @@ public class TetrisInfoView extends AbstractTetrisView {
 
     private static final String NEXT_SHAPE = "NEXT";
 
-    private static final String ROWS = "ROWS";
+//    private static final String ROWS = "ROWS";
 
-    private final ValueTetrisInfo rowsTetrisInfo;
+//    private final ValueTetrisInfo rowsTetrisInfo;
 
     private final ValueTetrisInfo scoreTetrisInfo;
 
@@ -125,7 +125,7 @@ public class TetrisInfoView extends AbstractTetrisView {
         final Rectangle scoreRectangle = new Rectangle(0, BLOCK_SIZE * 6, BLOCK_SIZE * 6, BLOCK_SIZE);
         final Rectangle rowsRectangle = new Rectangle(0, BLOCK_SIZE * 9, BLOCK_SIZE * 6, BLOCK_SIZE);
 
-        rowsTetrisInfo = new ValueTetrisInfo(rowsRectangle, ROWS);
+//        rowsTetrisInfo = new ValueTetrisInfo(rowsRectangle, ROWS);
         scoreTetrisInfo = new ValueTetrisInfo(scoreRectangle, SCORE);
         // levelTetrisInfo = new ValueTetrisInfo(levelRectangle, LEVEL);
         nextShapeTetrisInfo = new NextShapeTetrisInfo();
@@ -137,7 +137,7 @@ public class TetrisInfoView extends AbstractTetrisView {
     protected void doPaint(final Graphics2D graphics) {
         // levelTetrisInfo.render(graphics, tetris.getLevel());
         scoreTetrisInfo.render(graphics, tetris.getScore());
-        rowsTetrisInfo.render(graphics, tetris.getCompletedRows());
+//        rowsTetrisInfo.render(graphics, tetris.getCompletedRows());
         nextShapeTetrisInfo.render(graphics);
     }
 }
