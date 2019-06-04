@@ -36,7 +36,7 @@ public class TetrisInfoView extends AbstractTetrisView {
 
     private static final String SCORE = "SCORE";
 
-    private static final String LEVEL = "LEVEL";
+    // private static final String LEVEL = "LEVEL";
 
     private static final String NEXT_SHAPE = "NEXT";
 
@@ -46,7 +46,7 @@ public class TetrisInfoView extends AbstractTetrisView {
 
     private final ValueTetrisInfo scoreTetrisInfo;
 
-    private final ValueTetrisInfo levelTetrisInfo;
+    // private final ValueTetrisInfo levelTetrisInfo;
 
     private final NextShapeTetrisInfo nextShapeTetrisInfo;
 
@@ -121,13 +121,13 @@ public class TetrisInfoView extends AbstractTetrisView {
             final ImageCache imageCache, final Tetris tetris) {
         super(fontCache, imageCache, tetris);
 
-        final Rectangle levelRectangle = new Rectangle(0, BLOCK_SIZE * 3, BLOCK_SIZE * 6, BLOCK_SIZE);
+        // final Rectangle levelRectangle = new Rectangle(0, BLOCK_SIZE * 3, BLOCK_SIZE * 6, BLOCK_SIZE);
         final Rectangle scoreRectangle = new Rectangle(0, BLOCK_SIZE * 6, BLOCK_SIZE * 6, BLOCK_SIZE);
         final Rectangle rowsRectangle = new Rectangle(0, BLOCK_SIZE * 9, BLOCK_SIZE * 6, BLOCK_SIZE);
 
         rowsTetrisInfo = new ValueTetrisInfo(rowsRectangle, ROWS);
         scoreTetrisInfo = new ValueTetrisInfo(scoreRectangle, SCORE);
-        levelTetrisInfo = new ValueTetrisInfo(levelRectangle, LEVEL);
+        // levelTetrisInfo = new ValueTetrisInfo(levelRectangle, LEVEL);
         nextShapeTetrisInfo = new NextShapeTetrisInfo();
 
         initializeComponent(VIEW_WIDTH, VIEW_HEIGHT);
@@ -135,7 +135,7 @@ public class TetrisInfoView extends AbstractTetrisView {
 
     @Override
     protected void doPaint(final Graphics2D graphics) {
-        levelTetrisInfo.render(graphics, tetris.getLevel());
+        // levelTetrisInfo.render(graphics, tetris.getLevel());
         scoreTetrisInfo.render(graphics, tetris.getScore());
         rowsTetrisInfo.render(graphics, tetris.getCompletedRows());
         nextShapeTetrisInfo.render(graphics);
