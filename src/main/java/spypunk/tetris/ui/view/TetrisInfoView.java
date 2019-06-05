@@ -30,7 +30,7 @@ import spypunk.tetris.ui.util.SwingUtils.Text;
 
 public class TetrisInfoView extends AbstractTetrisView {
 
-    private static final int VIEW_HEIGHT = 1 + BLOCK_SIZE * 16;
+    private static final int VIEW_HEIGHT = 1 + BLOCK_SIZE * 14;
 
     private static final int VIEW_WIDTH = 1 + BLOCK_SIZE * 6;
 
@@ -83,19 +83,16 @@ public class TetrisInfoView extends AbstractTetrisView {
     }
 
     private class NextShapeTetrisInfo extends TetrisInfo {
-
-        private final Map<ShapeType, Pair<Image, Rectangle>> shapeTypeImageRectangles;
-
-        private Rectangle rectangle1;
+        private final NextShapeLayout nextShape1;
+        private final NextShapeLayout nextShape2;
+        private final NextShapeLayout nextShape3;
 
         NextShapeTetrisInfo() {
             super(new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 15), NEXT_SHAPE);
 
-            rectangle1 = new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 5);
-
-            shapeTypeImageRectangles = Arrays.asList(ShapeType.values())
-                    .stream()
-                    .collect(Collectors.toMap(Function.identity(), p -> this.createShapeTypeImageRectangle(p, rectangle1)));
+            nextShape1 = new NextShapeLayout(4);
+            nextShape2 = new NextShapeLayout(8);
+            nextShape3 = new NextShapeLayout(12);
         }
 
         @Override
@@ -108,18 +105,33 @@ public class TetrisInfoView extends AbstractTetrisView {
                 return;
             }
 
-            final ShapeType shapeType = tetris.getNextShape().getShapeType();
-            final Pair<Image, Rectangle> shapeTypeImageRectangle = shapeTypeImageRectangles.get(shapeType);
-
-            SwingUtils.drawImage(graphics, shapeTypeImageRectangle.getLeft(), shapeTypeImageRectangle.getRight());
-            SwingUtils.drawImage(graphics, shapeTypeImageRectangle.getLeft(), shapeTypeImageRectangle.getRight());
-
+            nextShape1.render(graphics);
+            nextShape2.render(graphics);
+            nextShape3.render(graphics);
         }
 
-        private Pair<Image, Rectangle> createShapeTypeImageRectangle(final ShapeType shapeType, Rectangle rect) {
-            final Image shapeTypeImage = imageCache.getShapeImage(shapeType);
+        private class NextShapeLayout {
+            private final Map<ShapeType, Pair<Image, Rectangle>> shapeTypeImageRectangles;
 
-            return Pair.of(shapeTypeImage, SwingUtils.getCenteredImageRectangle(shapeTypeImage, rect));
+            NextShapeLayout(int offset) {
+                Rectangle position = new Rectangle(0, BLOCK_SIZE * offset, BLOCK_SIZE * 6, BLOCK_SIZE * 5);
+                shapeTypeImageRectangles = Arrays.asList(ShapeType.values())
+                        .stream()
+                        .collect(Collectors.toMap(Function.identity(), p -> this.createShapeTypeImageRectangle(p, position)));
+            }
+
+            private Pair<Image, Rectangle> createShapeTypeImageRectangle(final ShapeType shapeType, Rectangle rect) {
+                final Image shapeTypeImage = imageCache.getShapeImage(shapeType);
+
+                return Pair.of(shapeTypeImage, SwingUtils.getCenteredImageRectangle(shapeTypeImage, rect));
+            }
+
+            public void render(final Graphics2D graphics) {
+                final ShapeType shapeType = tetris.getNextShape().getShapeType();
+                final Pair<Image, Rectangle> shapeTypeImageRectangle = this.shapeTypeImageRectangles.get(shapeType);
+                SwingUtils.drawImage(graphics, shapeTypeImageRectangle.getLeft(), shapeTypeImageRectangle.getRight());
+
+            }
         }
     }
 
