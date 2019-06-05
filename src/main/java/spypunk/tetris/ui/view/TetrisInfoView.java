@@ -15,6 +15,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -23,10 +24,12 @@ import org.apache.commons.lang3.tuple.Pair;
 import spypunk.tetris.model.ShapeType;
 import spypunk.tetris.model.Tetris;
 import spypunk.tetris.model.Tetris.State;
+import spypunk.tetris.model.Shape;
 import spypunk.tetris.ui.cache.ImageCache;
 import spypunk.tetris.ui.font.cache.FontCache;
 import spypunk.tetris.ui.util.SwingUtils;
 import spypunk.tetris.ui.util.SwingUtils.Text;
+import sun.security.provider.SHA;
 
 public class TetrisInfoView extends AbstractTetrisView {
 
@@ -90,9 +93,17 @@ public class TetrisInfoView extends AbstractTetrisView {
         NextShapeTetrisInfo() {
             super(new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 15), NEXT_SHAPE);
 
-            nextShape1 = new NextShapeLayout(4);
-            nextShape2 = new NextShapeLayout(8);
-            nextShape3 = new NextShapeLayout(12);
+            List<Shape> shapes = tetris.getNextShape();
+            if(!shapes.isEmpty()) {
+                nextShape1 = new NextShapeLayout(4, shapes.get(0).getShapeType());
+                nextShape2 = new NextShapeLayout(8, shapes.get(1).getShapeType());
+                nextShape3 = new NextShapeLayout(12, shapes.get(2).getShapeType());
+            }
+            else {
+                nextShape1 = new NextShapeLayout(4, shapes.get(0).getShapeType());
+                nextShape2 = new NextShapeLayout(8, shapes.get(1).getShapeType());
+                nextShape3 = new NextShapeLayout(12, shapes.get(2).getShapeType());
+            }
         }
 
         @Override
@@ -112,8 +123,10 @@ public class TetrisInfoView extends AbstractTetrisView {
 
         private class NextShapeLayout {
             private final Map<ShapeType, Pair<Image, Rectangle>> shapeTypeImageRectangles;
+            private final ShapeType shapeType;
 
-            NextShapeLayout(int offset) {
+            NextShapeLayout(int offset, ShapeType shape) {
+                shapeType = shape;
                 Rectangle position = new Rectangle(0, BLOCK_SIZE * offset, BLOCK_SIZE * 6, BLOCK_SIZE * 5);
                 shapeTypeImageRectangles = Arrays.asList(ShapeType.values())
                         .stream()
@@ -127,7 +140,6 @@ public class TetrisInfoView extends AbstractTetrisView {
             }
 
             public void render(final Graphics2D graphics) {
-                final ShapeType shapeType = tetris.getNextShape().getShapeType();
                 final Pair<Image, Rectangle> shapeTypeImageRectangle = this.shapeTypeImageRectangles.get(shapeType);
                 SwingUtils.drawImage(graphics, shapeTypeImageRectangle.getLeft(), shapeTypeImageRectangle.getRight());
 

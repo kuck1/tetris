@@ -34,7 +34,7 @@ public class TetrisInstance {
 
     private Shape currentShape;
 
-    private Shape nextShape;
+    private List<Shape> nextShape = Lists.newArrayList();
 
     private Optional<Movement> movement = Optional.empty();
 
@@ -71,11 +71,11 @@ public class TetrisInstance {
         this.currentShape = currentShape;
     }
 
-    public Shape getNextShape() {
-        return nextShape;
+    public List<Shape> getNextShape() {
+        return this.nextShape;
     }
 
-    public void setNextShape(final Shape nextShape) {
+    public void setNextShape(final List<Shape> nextShape) {
         this.nextShape = nextShape;
     }
 

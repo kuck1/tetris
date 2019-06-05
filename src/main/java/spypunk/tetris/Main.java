@@ -45,7 +45,8 @@ public final class Main {
     public static void main(final String[] args) {
         try {
             final Injector injector = Guice.createInjector(new TetrisModule());
-            injector.getInstance(TetrisController.class).start();
+            TetrisController tetrisController = injector.getInstance(TetrisController.class);
+            tetrisController.start();
         } catch (CreationException | ConfigurationException | ProvisionException e) {
             LOGGER.error(e.getMessage(), e);
             SwingUtils.doInAWTThread(Main::showErrorDialog);

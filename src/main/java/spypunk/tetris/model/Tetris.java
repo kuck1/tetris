@@ -93,11 +93,11 @@ public class Tetris {
         tetrisInstance.setCurrentShape(currentShape);
     }
 
-    public Shape getNextShape() {
+    public List<Shape> getNextShape() {
         return tetrisInstance.getNextShape();
     }
 
-    public void setNextShape(final Shape nextShape) {
+    public void setNextShape(final List<Shape> nextShape) {
         tetrisInstance.setNextShape(nextShape);
     }
 

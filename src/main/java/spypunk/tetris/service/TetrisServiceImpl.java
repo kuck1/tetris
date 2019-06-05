@@ -13,6 +13,7 @@ import static spypunk.tetris.constants.TetrisConstants.WIDTH;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -63,10 +64,20 @@ public class TetrisServiceImpl implements TetrisService {
 
         tetris.setTetrisInstance(new TetrisInstance());
         tetris.setSpeed(speed);
-        tetris.setNextShape(shapeFactory.createRandomShape());
+        List<Shape> nextShapes = createShapeList();
+        tetris.setNextShape(nextShapes);
         tetris.setState(State.RUNNING);
 
         generateNextShape();
+    }
+
+    private List<Shape> createShapeList() {
+        List<Shape> nextShapes = new ArrayList<>();
+        nextShapes.add(shapeFactory.createRandomShape());
+        nextShapes.add(shapeFactory.createRandomShape());
+        nextShapes.add(shapeFactory.createRandomShape());
+
+        return nextShapes;
     }
 
     @Override
@@ -178,11 +189,11 @@ public class TetrisServiceImpl implements TetrisService {
     }
 
     private void generateNextShape() {
-        final Shape currentShape = tetris.getNextShape();
+        final Shape currentShape = tetris.getNextShape().get(0);
 
         tetris.setCurrentShape(currentShape);
         tetris.setCurrentShapeLocked(false);
-        tetris.setNextShape(shapeFactory.createRandomShape());
+        tetris.setNextShape(createShapeList());
 
         updateStatistics();
     }
