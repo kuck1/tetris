@@ -56,6 +56,8 @@ public class TetrisServiceImpl implements TetrisService {
     public TetrisServiceImpl(final ShapeFactory shapeFactory, @TetrisProvider final Tetris tetris) {
         this.shapeFactory = shapeFactory;
         this.tetris = tetris;
+        List<Shape> nextShapes = createShapeList();
+        this.tetris.setNextShape(nextShapes);
     }
 
     @Override
@@ -75,6 +77,16 @@ public class TetrisServiceImpl implements TetrisService {
         List<Shape> nextShapes = new ArrayList<>();
         nextShapes.add(shapeFactory.createRandomShape());
         nextShapes.add(shapeFactory.createRandomShape());
+        nextShapes.add(shapeFactory.createRandomShape());
+
+        return nextShapes;
+    }
+
+    private List<Shape> updateShapeList() {
+        List<Shape> nextShapes = new ArrayList<>();
+
+        nextShapes.add(tetris.getNextShape().get(1));
+        nextShapes.add(tetris.getNextShape().get(2));
         nextShapes.add(shapeFactory.createRandomShape());
 
         return nextShapes;
@@ -189,11 +201,13 @@ public class TetrisServiceImpl implements TetrisService {
     }
 
     private void generateNextShape() {
+        System.out.print("A");
+
         final Shape currentShape = tetris.getNextShape().get(0);
 
         tetris.setCurrentShape(currentShape);
         tetris.setCurrentShapeLocked(false);
-        tetris.setNextShape(createShapeList());
+        tetris.setNextShape(updateShapeList());
 
         updateStatistics();
     }

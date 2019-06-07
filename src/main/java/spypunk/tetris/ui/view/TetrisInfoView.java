@@ -51,7 +51,7 @@ public class TetrisInfoView extends AbstractTetrisView {
 
     // private final ValueTetrisInfo levelTetrisInfo;
 
-    private final NextShapeTetrisInfo nextShapeTetrisInfo;
+    private NextShapeTetrisInfo nextShapeTetrisInfo;
 
     private abstract class TetrisInfo {
 
@@ -94,16 +94,10 @@ public class TetrisInfoView extends AbstractTetrisView {
             super(new Rectangle(0, BLOCK_SIZE * 4, BLOCK_SIZE * 6, BLOCK_SIZE * 15), NEXT_SHAPE);
 
             List<Shape> shapes = tetris.getNextShape();
-            if(!shapes.isEmpty()) {
-                nextShape1 = new NextShapeLayout(4, shapes.get(0).getShapeType());
-                nextShape2 = new NextShapeLayout(8, shapes.get(1).getShapeType());
-                nextShape3 = new NextShapeLayout(12, shapes.get(2).getShapeType());
-            }
-            else {
-                nextShape1 = new NextShapeLayout(4, shapes.get(0).getShapeType());
-                nextShape2 = new NextShapeLayout(8, shapes.get(1).getShapeType());
-                nextShape3 = new NextShapeLayout(12, shapes.get(2).getShapeType());
-            }
+            nextShape1 = new NextShapeLayout(4, shapes.get(0).getShapeType());
+            nextShape2 = new NextShapeLayout(8, shapes.get(1).getShapeType());
+            nextShape3 = new NextShapeLayout(12, shapes.get(2).getShapeType());
+
         }
 
         @Override
@@ -158,6 +152,7 @@ public class TetrisInfoView extends AbstractTetrisView {
 //        rowsTetrisInfo = new ValueTetrisInfo(rowsRectangle, ROWS);
         scoreTetrisInfo = new ValueTetrisInfo(scoreRectangle, SCORE);
         // levelTetrisInfo = new ValueTetrisInfo(levelRectangle, LEVEL);
+å
         nextShapeTetrisInfo = new NextShapeTetrisInfo();
 
         initializeComponent(VIEW_WIDTH, VIEW_HEIGHT);
@@ -168,6 +163,7 @@ public class TetrisInfoView extends AbstractTetrisView {
         // levelTetrisInfo.render(graphics, tetris.getLevel());
         scoreTetrisInfo.render(graphics, tetris.getScore());
 //        rowsTetrisInfo.render(graphics, tetris.getCompletedRows());
+        nextShapeTetrisInfo = new NextShapeTetrisInfo();
         nextShapeTetrisInfo.render(graphics);
     }
 }
