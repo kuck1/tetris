@@ -147,7 +147,7 @@ public class TetrisMainViewImpl extends AbstractView implements TetrisMainView {
         centerPanel.setBorder(BorderFactory.createEmptyBorder(BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE));
 
         centerPanel.add(tetrisGridView.getComponent(), BorderLayout.CENTER);
-        centerPanel.add(tetrisStatisticsView.getComponent(), BorderLayout.WEST);
+//        centerPanel.add(tetrisStatisticsView.getComponent(), BorderLayout.WEST);
         centerPanel.add(tetrisInfoView.getComponent(), BorderLayout.EAST);
 
         frame = new JFrame(tetris.getName() + " " + tetris.getVersion());

@@ -152,7 +152,7 @@ public class TetrisInfoView extends AbstractTetrisView {
 //        rowsTetrisInfo = new ValueTetrisInfo(rowsRectangle, ROWS);
         scoreTetrisInfo = new ValueTetrisInfo(scoreRectangle, SCORE);
         // levelTetrisInfo = new ValueTetrisInfo(levelRectangle, LEVEL);
-å
+
         nextShapeTetrisInfo = new NextShapeTetrisInfo();
 
         initializeComponent(VIEW_WIDTH, VIEW_HEIGHT);
