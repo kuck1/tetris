@@ -50,6 +50,8 @@ public class TetrisControllerCommandCacheImpl implements TetrisControllerCommand
         this.tetris = tetris;
         this.tetrisMainView = tetrisMainView;
 
+
+
         tetrisControllerCommands.put(TetrisControllerCommandType.DOWN, createMoveCommand(Movement.DOWN));
         tetrisControllerCommands.put(TetrisControllerCommandType.LEFT, createMoveCommand(Movement.LEFT));
         tetrisControllerCommands.put(TetrisControllerCommandType.RIGHT, createMoveCommand(Movement.RIGHT));

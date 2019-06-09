@@ -201,8 +201,6 @@ public class TetrisServiceImpl implements TetrisService {
     }
 
     private void generateNextShape() {
-        System.out.print("A");
-
         final Shape currentShape = tetris.getNextShape().get(0);
 
         tetris.setCurrentShape(currentShape);

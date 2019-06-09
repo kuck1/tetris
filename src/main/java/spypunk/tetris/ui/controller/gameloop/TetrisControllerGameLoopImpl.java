@@ -21,6 +21,7 @@ import spypunk.tetris.service.TetrisService;
 import spypunk.tetris.ui.controller.event.TetrisControllerTetrisEventHandler;
 import spypunk.tetris.ui.controller.input.TetrisControllerInputHandler;
 import spypunk.tetris.ui.view.TetrisMainView;
+import spypunk.tetris.ui.controller.ai.AI;
 
 @Singleton
 public final class TetrisControllerGameLoopImpl implements TetrisControllerGameLoop, Runnable {
@@ -35,6 +36,8 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
 
     private final TetrisControllerInputHandler tetrisControllerInputHandler;
 
+    private final AI ai;
+
     private final TetrisControllerTetrisEventHandler tetrisControllerTetrisEventHandler;
 
     private final TetrisService tetrisService;
@@ -47,10 +50,11 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
     public TetrisControllerGameLoopImpl(final TetrisService tetrisService,
             final TetrisControllerInputHandler tetrisControllerInputHandler,
             final TetrisControllerTetrisEventHandler tetrisControllerTetrisEventHandler,
-            final TetrisMainView tetrisMainView) {
+            final TetrisMainView tetrisMainView, final AI ai) {
 
         this.tetrisService = tetrisService;
         this.tetrisControllerInputHandler = tetrisControllerInputHandler;
+        this.ai = ai;
         this.tetrisControllerTetrisEventHandler = tetrisControllerTetrisEventHandler;
         this.tetrisMainView = tetrisMainView;
 
@@ -89,6 +93,8 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
     }
 
     private void update() {
+         ai.update(tetrisService);
+
         tetrisControllerInputHandler.handleInputs();
 
         tetrisService.update();

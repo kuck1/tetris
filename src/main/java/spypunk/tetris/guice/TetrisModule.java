@@ -39,6 +39,8 @@ import spypunk.tetris.ui.cache.ImageCache;
 import spypunk.tetris.ui.cache.ImageCacheImpl;
 import spypunk.tetris.ui.controller.TetrisController;
 import spypunk.tetris.ui.controller.TetrisControllerImpl;
+import spypunk.tetris.ui.controller.ai.AI;
+import spypunk.tetris.ui.controller.ai.AIImpl;
 import spypunk.tetris.ui.controller.command.cache.TetrisControllerCommandCache;
 import spypunk.tetris.ui.controller.command.cache.TetrisControllerCommandCacheImpl;
 import spypunk.tetris.ui.controller.event.TetrisControllerTetrisEventHandler;
@@ -101,6 +103,7 @@ public class TetrisModule extends AbstractModule {
         bind(TetrisControllerTetrisEventHandler.class).to(TetrisControllerTetrisEventHandlerImpl.class);
         bind(TetrisControllerGameLoop.class).to(TetrisControllerGameLoopImpl.class);
         bind(TetrisMainView.class).to(TetrisMainViewImpl.class);
+        bind(AI.class).to(AIImpl.class);
     }
 
     @Target({ ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
