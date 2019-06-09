@@ -93,7 +93,7 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
     }
 
     private void update() {
-        ai.update();
+        ai.update(tetrisService);
 
         tetrisControllerInputHandler.handleInputs();
 

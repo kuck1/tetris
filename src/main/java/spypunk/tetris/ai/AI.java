@@ -1,6 +1,7 @@
 package spypunk.tetris.ai;
 
+import spypunk.tetris.service.TetrisService;
+
 public interface AI {
-    void move();
-    void update();
+    void update(TetrisService tetrisService);
 }

@@ -1,24 +1,23 @@
 package spypunk.tetris.ai;
 
+import spypunk.tetris.model.Movement;
+import spypunk.tetris.service.TetrisService;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class AIImpl implements AI {
 
+    private TetrisService tetrisService;
+
     @Override
-    public void update() {
+    public void update(TetrisService tetrisService) {
+        this.tetrisService = tetrisService;
         move();
     }
 
-    @Override
-    public void move(){
-        try {
-            Robot robot = new Robot();
-            robot.keyPress(KeyEvent.VK_DOWN);
-        }
-        catch (AWTException e) {
-            e.printStackTrace();
-        }
+    private void move(){
+        tetrisService.move(Movement.DOWN);
     }
 
 }
