@@ -313,13 +313,6 @@ public class TetrisServiceImpl implements TetrisService {
         tetris.getBlocks().put(block.getLocation(), block);
     }
 
-    private boolean canShapeMove(final Movement movement) {
-        final Shape currentShape = tetris.getCurrentShape();
-        final Shape newShape = movement.apply(currentShape);
-
-        return newShape.getBlocks().stream().map(Block::getLocation).allMatch(this::canBlockMove);
-    }
-
     private boolean canBlockMove(final Point location) {
         return gridRectangle.contains(location) && !tetris.getBlocks().containsKey(location);
     }
@@ -354,5 +347,12 @@ public class TetrisServiceImpl implements TetrisService {
 
     private boolean isMovementAllowed() {
         return isTetrisRunning() && !isCurrentShapeLocked();
+    }
+
+    private boolean canShapeMove(final Movement movement) {
+        final Shape currentShape = tetris.getCurrentShape();
+        final Shape newShape = movement.apply(currentShape);
+
+        return newShape.getBlocks().stream().map(Block::getLocation).allMatch(this::canBlockMove);
     }
 }
