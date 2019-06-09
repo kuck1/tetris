@@ -1,7 +1,6 @@
-package spypunk.tetris.ui.controller.ai;
+package spypunk.tetris.ai;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class AIImpl implements AI {

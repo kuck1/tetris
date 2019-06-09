@@ -1,4 +1,4 @@
-package spypunk.tetris.ui.controller.ai;
+package spypunk.tetris.ai;
 
 public interface AI {
     void move();
