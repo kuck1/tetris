@@ -85,6 +85,10 @@ public class Tetris {
         return tetrisInstance.getBlocks();
     }
 
+    public TetrisInstance getTetrisInstance() {
+        return tetrisInstance;
+    }
+
     public Shape getCurrentShape() {
         return tetrisInstance.getCurrentShape();
     }

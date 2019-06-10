@@ -73,6 +73,10 @@ public class TetrisServiceImpl implements TetrisService {
         generateNextShape();
     }
 
+    public Tetris getTetris() {
+        return tetris;
+    }
+
     private List<Shape> createShapeList() {
         List<Shape> nextShapes = new ArrayList<>();
         nextShapes.add(shapeFactory.createRandomShape());

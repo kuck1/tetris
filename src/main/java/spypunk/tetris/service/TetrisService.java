@@ -9,6 +9,7 @@
 package spypunk.tetris.service;
 
 import spypunk.tetris.model.Movement;
+import spypunk.tetris.model.Tetris;
 
 public interface TetrisService {
 
@@ -23,4 +24,6 @@ public interface TetrisService {
     void pause();
 
     void mute();
+
+    Tetris getTetris();
 }
