@@ -46,6 +46,8 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
 
     private volatile boolean running;
 
+    private int updateCount = 0;
+
     @Inject
     public TetrisControllerGameLoopImpl(final TetrisService tetrisService,
             final TetrisControllerInputHandler tetrisControllerInputHandler,
@@ -93,8 +95,11 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
     }
 
     private void update() {
-        ai.update(tetrisService);
-
+        updateCount ++;
+        if (updateCount % 300 == 0){
+            ai.update(tetrisService);
+            System.out.print("update ai ");
+        }
         tetrisControllerInputHandler.handleInputs();
 
         tetrisService.update();

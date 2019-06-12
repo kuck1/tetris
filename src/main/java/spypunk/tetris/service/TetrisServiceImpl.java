@@ -127,21 +127,31 @@ public class TetrisServiceImpl implements TetrisService {
     }
 
     private void applyGravity() {
+
+//        System.out.print("applyGravity ");
+
         if (!isTetrisRunning()) {
             return;
         }
 
         if (!isTimeToApplyGravity()) {
-            incrementGravityFrame();
+            // incrementGravityFrame();
             return;
         }
 
+        if (tetris.getCurrentShape() == null){
+            System.out.print("current shape null ");
+            generateNextShape();
+        }
+
         if (isCurrentShapeLocked()) {
+            System.out.print("current shape locked detected ");
+
             clearCompleteRows();
             generateNextShape();
             checkShapeLocked();
         } else {
-            moveShapeDown();
+//            moveShapeDown();
         }
 
         resetCurrentGravityFrame();
@@ -205,6 +215,7 @@ public class TetrisServiceImpl implements TetrisService {
     }
 
     private void generateNextShape() {
+        System.out.print("generateNextShape ");
         final Shape currentShape = tetris.getNextShape().get(0);
 
         tetris.setCurrentShape(currentShape);
