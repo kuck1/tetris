@@ -17,7 +17,7 @@ public class AIImpl implements AI {
 
     private boolean[][] board = new boolean[100][100];
 
-    private int haveMoved = 3;
+    private int haveMoved = 100;
 
     @Override
     public void update(TetrisService tetrisService) {
@@ -83,7 +83,7 @@ public class AIImpl implements AI {
         for (Point point : tetrisService.getTetris().getCurrentShape().getShapeType().getRotations().get(0)) {
             int xPos = (int) point.getX() + x;
             int yPos = (int) point.getY() + y;
-            if (xPos >= 10 || yPos >= 10 || this.board[xPos][xPos] == true) {
+            if (xPos >= 10 || yPos >= 10 || this.board[xPos][yPos] == true) {
                 return false;
             }
         }
@@ -122,8 +122,11 @@ public class AIImpl implements AI {
         tetrisService.getTetris().getCurrentShape().getBlocks()
                 .forEach(block -> tetrisService.getTetris().getBlocks().put(block.getLocation(), block));  // fix
 
+//        tetrisService.getTetris().getCurrentShape().getBlocks()
+//                .forEach(block -> tetrisService.getTetris().getBlocks().put(block.getLocation(), block));
+
         tetrisService.getTetris().setCurrentShapeLocked(true);    // fix
 
-        System.out.print("shape locked ");
+        System.out.println("shape locked to position x,y: " + placement1.getX() + ", " + placement1.getY());
     }
 }

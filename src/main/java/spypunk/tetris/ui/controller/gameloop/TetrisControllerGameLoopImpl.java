@@ -96,7 +96,7 @@ public final class TetrisControllerGameLoopImpl implements TetrisControllerGameL
 
     private void update() {
         updateCount ++;
-        if (updateCount % 300 == 0){
+        if (updateCount % 50 == 0){
             ai.update(tetrisService);
             System.out.print("update ai ");
         }

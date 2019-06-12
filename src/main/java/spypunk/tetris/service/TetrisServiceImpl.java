@@ -135,13 +135,8 @@ public class TetrisServiceImpl implements TetrisService {
         }
 
         if (!isTimeToApplyGravity()) {
-            // incrementGravityFrame();
+            incrementGravityFrame();
             return;
-        }
-
-        if (tetris.getCurrentShape() == null){
-            System.out.print("current shape null ");
-            generateNextShape();
         }
 
         if (isCurrentShapeLocked()) {
